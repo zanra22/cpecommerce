@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.views.generic import ListView
 
 from products.models import Product
 from .forms import ContactForm
@@ -50,6 +51,12 @@ def register_page(request):
 
     return render(request, "auth/register.html", context)
 
+class HomePage(ListView):
+    template_name = "home_page.html"
+
+    def get_queryset(self, *args, **kwargs):
+        request = self.request
+        return Product.objects.all()
 
 def home_page(request):
     list = Product.objects.all()

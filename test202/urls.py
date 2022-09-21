@@ -1,10 +1,10 @@
 from django.contrib import admin
-from django.template.defaulttags import url
-from django.urls import path
+
+from django.urls import path, re_path, include
 
 from .views import home_page, contact_page, list_user, update, updaterecord, delete, register_page
 from accounts.views import RegisterView, login_page
-from products.views import ProductListView, ProductDetailView
+from products.views import ProductListView, ProductDetailView, ProductFeaturedListView, ProductFeaturedDetailView, ProductDetailSlugView
 from django.contrib.auth import views as auth_views
 
 
@@ -18,8 +18,8 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('users/', list_user, name='list_user'),
     path('update/<int:id>', update, name='update'),
-    path('products/', ProductListView.as_view(), name='product_list'),
-    path('products/<int:pk>', ProductDetailView.as_view(), name='detailed'),
+    path('products/', include("products.urls")),
+
     path('delete/<int:id>', delete, name='delete'),
     path('update/updaterecord/<int:id>', updaterecord, name='updaterecord'),
     path('logout/', auth_views.LogoutView.as_view(template_name='auth/logout.html'), name='logout'),

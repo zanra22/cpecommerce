@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,9 +14,12 @@
 {{ object.description }} <br>
 {% if object.image %}
     <img src="{{ object.image.url }}">
-{% elif not object.image %}
+{% endif %}
+
+{% if not object.image %}
     <img src="{% static 'img/item.jpg' %}">
 {% endif %}
+
 
 </body>
 </html>

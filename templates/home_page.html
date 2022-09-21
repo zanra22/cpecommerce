@@ -30,7 +30,7 @@
                     {% elif not foo.image %}
                         <img src="{% static 'img/item.jpg' %}" style="height: 300px; max-height: 300px; width: 287px; max-width: 287px;">
                     {% endif %}
-                    <a class="btn btn-success" href="{% url 'detailed' foo.id  %}">Go</a>
+                    <a class="btn btn-success" href="{{ foo.get_absolute_url }}">Go</a>
                 </div>
             {% endfor %}
             
