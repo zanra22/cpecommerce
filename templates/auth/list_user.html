@@ -2,33 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    {% include 'base/css.html' %}
+    {% include 'base/js.css.html' %}
     <title>Title</title>
 </head>
 <body>
+{% include 'base/navbar.html' %}
 <div class="container">
-        <h2>Rewards List</h2>
+        <h2>User List</h2>
         <div class="reward mt-3">
             <div class="table-responsive">
               <table class="table table-bordered">
 {#                <button id="addRewards" onclick="location.href='{% url 'add_item' %}'"><i class="fas fa-plus"></i> Add Item</i></button>#}
                     <thead>
                         <tr>
-                         <th>ID</th>
-                         <th>Username</th>
-                         <th>Firstname</th>
-                         <th colspan="2">Action</th>
+                         <th class="col text-center">ID</th>
+                         <th class="col text-center">Username</th>
+                         <th class="col text-center">Firstname</th>
+                         <th class="col text-center" colspan="2">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                           {% for foo in model %}
                             <tr>
-                                <td data-label="ID">{{ foo.id }}</td>
-                                <td data-label="Rewards">{{ foo.email }}</td>
-                                <td data-label="Points">{{ foo.first_name }}</td>
-                                <td><button  class="update-btn" onclick="location.href='{% url 'update' foo.id %}'">
-                                    Update</button></td>
-                                  <td><button  class="delete-btn" onclick="location.href='{% url 'delete' foo.id %}'">
-                                    Delete</button>
+                                <td class="col text-center" data-label="ID">{{ foo.id }}</td>
+                                <td class="col text-center" data-label="Rewards">{{ foo.email }}</td>
+                                <td class="col text-center" data-label="Points">{{ foo.first_name }}</td>
+                                <td>
+                                    <div class="col text-center">
+                                        <button  class="update-btn btn btn-primary text-center" onclick="location.href='{% url 'update' foo.id %}'">
+                                    Update</button>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col text-center">
+                                        <button  class="delete-btn btn btn-danger" onclick="location.href='{% url 'delete' foo.id %}'">
+                                        Delete</button>
+                                    </div>
+                                </td>
                           </tr>
                         {% endfor %}
                     </tbody>
@@ -36,6 +47,8 @@
             </div>
           </div>
     </div>
+{% include 'base/footer.html' %}
+
 
 </body>
 </html>

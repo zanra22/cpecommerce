@@ -11,6 +11,7 @@ from accounts.forms import RegisterForm, LoginForm
 
 def login_page(request):
     form = LoginForm(request.POST or None)
+    regForm = RegisterForm(request.POST or None)
     # print(form)
     # print(request.user.is_authenticated)
     if request.POST and form.is_valid():
@@ -19,11 +20,23 @@ def login_page(request):
         print(user)
         if user:
             login(request, user)
-            # success_url = reverse_lazy('login')
-            # ontext['form'] = LoginForm()
             return redirect('home')
+    if request.POST and regForm.is_valid():
+        print(regForm.cleaned_data)
+        print("test")
+
+        email = regForm.cleaned_data.get("email")
+        first_name = regForm.cleaned_data.get("first_name")
+        last_name = regForm.cleaned_data.get("last_name")
+        password = regForm.cleaned_data.get("password1")
+        print(password)
+        newUser = User.objects.create_user(email, password,first_name, last_name)
+        print("test")
+        print(email)
+        print(newUser)
     context = {
-        "form": form
+        "form": form,
+        "regForm": regForm
     }
 
     return render(request, "auth/login.html", context)

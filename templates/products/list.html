@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% include 'base/css.html' %}
+    {% include 'base/js.css.html' %}
+</head>
+<body>
+{% include 'base/navbar.html' %}
+{% for object in object_list %}
+        Title:  <a href="{% url 'detailed' object.id %}">{{ object.title }}</a><br>
+        {% if object.image %}
+            {{ object.image.url }}
+        {% endif %}
+
+{% endfor %}
+
+
+</body>
+</html>

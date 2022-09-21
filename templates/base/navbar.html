@@ -1,0 +1,31 @@
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark clearfix">
+    <div class="container-fluid">
+        <a href="{% url 'home' %}" class="navbar-brand">E-Commerce</a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            {% if request.user.is_authenticated and request.user.is_admin %}
+                <div class="navbar-nav">
+                    <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
+                    <a href="{% url 'list_user' %}" class="nav-item nav-link">User List</a>
+                    <a href="{% url 'product_list' %}" class="nav-item nav-link">Product List</a>
+                </div>
+                <div class="navbar-nav ms-auto">
+
+                    <a href="{% url 'logout' %}" class="nav-item nav-link btn btn-danger">Logout</a>
+                </div>
+            {% elif not request.user.is_authenticated %}
+                <div class="navbar-nav ms-auto">
+
+                    <a href="{% url 'login' %}" class="nav-item nav-link">Login</a>
+
+              	    <a href="{% url 'register' %}" class="nav-item nav-link">Register</a>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+</nav>

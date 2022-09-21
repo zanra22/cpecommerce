@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
-from .forms import ContactForm, RegisterForm
+
+from products.models import Product
+from .forms import ContactForm
+from accounts.forms import RegisterForm
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -49,10 +52,11 @@ def register_page(request):
 
 
 def home_page(request):
-    if request.user.is_authenticated:
-        return render(request, "home_page.html")
-    else:
-        return redirect('login')
+    list = Product.objects.all()
+    context = {
+        'list': list
+    }
+    return render(request, 'home_page.html', context)
 
 
 

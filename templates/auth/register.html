@@ -9,25 +9,26 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.rtl.min.css" integrity="sha384-OXTEbYDqaX2ZY/BOaZV/yFGChYHtrXH2nyXJ372n2Y8abBhrqacCEe+3qhSHtLjy" crossorigin="anonymous">
 
     <title>Contact Page</title>
-      Test
   </head>
   <body>
     <div class="text-center">
         <h1>Register</h1>
     </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6 col-12">
-                <form method="post">
-                    {% csrf_token %}
-                    {{ form }}
-                    <br>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+    {% if request.user.is_authenticated %}
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-12">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form }}
+                        <br>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    {% endif %}
+
 
 
     <!-- Optional JavaScript; choose one of the two! -->

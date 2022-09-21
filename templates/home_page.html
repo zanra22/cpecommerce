@@ -1,30 +1,45 @@
+{% load static %}
+
 <!doctype html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+      {% include "base/js.css.html" %}
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.rtl.min.css" integrity="sha384-OXTEbYDqaX2ZY/BOaZV/yFGChYHtrXH2nyXJ372n2Y8abBhrqacCEe+3qhSHtLjy" crossorigin="anonymous">
-
+    {% include "base/css.html" %}
     <title>Hello World!</title>
   </head>
-  <body>
-    <div class="text-center">
-        <h1>Hello World!</h1>
+  <body class="d-flex flex-column min-vh-100">
+
+    {% include "base/navbar.html" %}
+    <div class="container">
+        <div class="p-5 my-4 bg-light rounded-3">
+            <h1>Lorem Ipsum</h1>
+            <p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+        </div>
+        <div class="row g-3">
+            {% for foo in list %}
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                    <h2>{{ foo.title }}</h2>
+                    <p>{{ foo.description }}</p>
+                    {% if foo.image %}
+                        <img src="{{ foo.image.url }}" style="height: 300px; max-height: 300px; width: 287px; max-width: 287px;">
+                    {% elif not foo.image %}
+                        <img src="{% static 'img/item.jpg' %}" style="height: 300px; max-height: 300px; width: 287px; max-width: 287px;">
+                    {% endif %}
+                    <a class="btn btn-success" href="{% url 'detailed' foo.id  %}">Go</a>
+                </div>
+            {% endfor %}
+            
+        </div>
+
+        {% include "base/footer.html" %}
     </div>
 
 
-    <!-- Optional JavaScript; choose one of the two! -->
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
-    -->
   </body>
 </html>
