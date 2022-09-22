@@ -18,8 +18,8 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('users/', list_user, name='list_user'),
     path('update/<int:id>', update, name='update'),
-    path('products/', include("products.urls")),
-
+    path('products/', include("products.urls", namespace='products')),
+    path('search/', include("search.urls", namespace='search')),
     path('delete/<int:id>', delete, name='delete'),
     path('update/updaterecord/<int:id>', updaterecord, name='updaterecord'),
     path('logout/', auth_views.LogoutView.as_view(template_name='auth/logout.html'), name='logout'),
