@@ -51,14 +51,10 @@ def register_page(request):
 
     return render(request, "auth/register.html", context)
 
-class HomePage(ListView):
-    template_name = "home_page.html"
-
-    def get_queryset(self, *args, **kwargs):
-        request = self.request
-        return Product.objects.all()
 
 def home_page(request):
+    # print("test")
+    print(request.session.get("first_name", "Unknown"))
     list = Product.objects.all()
     context = {
         'list': list

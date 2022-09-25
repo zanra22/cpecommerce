@@ -3,7 +3,7 @@ from django.shortcuts import render
 from .models import Product
 # Create your views here.
 from django.views.generic import ListView, DetailView
-
+from carts.models import Cart
 
 class ProductFeaturedListView(ListView):
     template_name = "products/list.html"
@@ -18,8 +18,6 @@ class ProductFeaturedDetailView(DetailView):
     template_name = "products/featured-detail.html"
 
 
-
-
 class ProductListView(ListView):
     template_name = "products/list.html"
 
@@ -27,9 +25,17 @@ class ProductListView(ListView):
         request = self.request
         return Product.objects.all()
 
+
 class ProductDetailSlugView(DetailView):
     queryset = Product.objects.all()
     template_name = "products/detail.html"
+
+    def get_context_data(self,*args, **kwargs):
+        context = super(ProductDetailSlugView, self).get_context_data(*args, **kwargs)
+        request = self.request
+        cart_obj, new_obj = Cart.objects.new_or_get(request)
+        context['cart'] = cart_obj
+        return context
 
     def get_object(self, *args, **kwargs):
         request = self.request
@@ -46,6 +52,7 @@ class ProductDetailSlugView(DetailView):
             raise Http404("Test Error")
         return instance
 
+
 class ProductDetailView(DetailView):
     template_name = "products/detail.html"
 
@@ -55,6 +62,5 @@ class ProductDetailView(DetailView):
 
     def get_queryset(self, *args, **kwargs):
         request = self.request
-        pk =self.kwargs.get('pk')
+        pk = self.kwargs.get('pk')
         return Product.objects.filter(pk=pk)
-

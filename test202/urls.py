@@ -11,6 +11,8 @@ from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
 
+from carts.views import cart_home
+
 
 urlpatterns = [
     path('', home_page, name='home'),
@@ -25,6 +27,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='auth/logout.html'), name='logout'),
     path('login/', login_page, name='login'),
     path('admin/', admin.site.urls),
+    path('cart/', include("carts.urls", namespace='cart')),
 ]
 
 

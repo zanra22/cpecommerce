@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'products',
     'search',
     'tags',
+    'carts',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'

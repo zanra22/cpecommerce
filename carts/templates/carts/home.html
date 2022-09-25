@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% include 'base/css.html' %}
+    {% include 'base/js.css.html' %}
+</head>
+<body>
+{% include 'base/navbar.html' %}
+<div class="container">
+    <div class="row g-3">
+        <h1>Cart</h1>
+        {% if cart.products.exists %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Product Name</th>
+                        <th>Product Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in cart.products.all %}
+                        <tr>
+                            <th> {{ forloop.counter }}</th>
+                            <td>{{ product.title }}
+                                {% include 'products/snippets/update-cart.html' with product=object cart=cart in_cart=True %}
+                            </td>
+                            <td>{{ product.price }}</td>
+                            <td></td>
+                        </tr>
+                    {% endfor %}
+                        <tr>
+                            <td colspan="2"></td>
+                            <td><b>Subtotal:</b> {{ cart.subtotal }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td><b>Total:</b> {{ cart.total }}</td>
+                        </tr>
+                </tbody>
+            </table>
+        {% else %}
+            <p class="lead">Cart is empty</p>
+        {% endif %}
+    </div>
+</div>
+
+</body>
+</html>
