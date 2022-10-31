@@ -1,4 +1,5 @@
 .DS_STORE
+test202/settings/local.py
 local_partha.py
 # Virtualenv related
 bin/
