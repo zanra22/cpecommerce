@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from django.urls import path, re_path, include
 
-from .views import home_page, contact_page, list_user, update, updaterecord, delete, register_page
+from .views import home_page, contact_page, list_user, update, updaterecord, delete, register_page, quiz
 from accounts.views import RegisterView, login_page
 from products.views import ProductListView, ProductDetailView, ProductFeaturedListView, ProductFeaturedDetailView, ProductDetailSlugView
 from django.contrib.auth import views as auth_views
@@ -17,6 +17,7 @@ from carts.views import cart_home
 urlpatterns = [
     path('', home_page, name='home'),
     path('contact/', contact_page),
+    path('quiz/', quiz, name='quiz'),
     path('register/', RegisterView.as_view(), name='register'),
     path('users/', list_user, name='list_user'),
     path('update/<int:id>', update, name='update'),

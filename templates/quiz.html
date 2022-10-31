@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'base/css.html' %}
+    {% include 'base/js.css.html' %}
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+</head>
+<body style="background-color: black">
+{% include 'base/navbar.html' %}
+<br>
+<div class="container">
+<video class="w-100" controls>
+    <source src="{% static 'video/Quiz2.mp4' %}" type="video/mp4">
+</video>
+</div>
+</body>
+</html>

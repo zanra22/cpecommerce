@@ -61,7 +61,8 @@ def home_page(request):
     }
     return render(request, 'home_page.html', context)
 
-
+def quiz(request):
+    return render(request, 'quiz.html')
 
 def contact_page(request):
     contact_form = ContactForm(request.POST or None)

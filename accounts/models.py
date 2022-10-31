@@ -4,7 +4,7 @@ from django.db import models
 # Create your models here.
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, password=None,first_name=None, is_active=True, is_staff=False, is_admin=False, is_student=False):
+    def create_user(self, email, password=None,first_name=None,last_name=None, is_active=True, is_staff=False, is_admin=False, is_student=False):
         if not email:
             raise ValueError("Must have Email")
         if not password:
@@ -15,7 +15,7 @@ class UserManager(BaseUserManager):
         )
         user_obj.set_password(password)
         user_obj.first_name = first_name
-        # user_obj.last_name = last_name
+        user_obj.last_name = last_name
         user_obj.staff = is_staff
         user_obj.admin = is_admin
         user_obj.active = is_active

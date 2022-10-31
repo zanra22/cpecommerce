@@ -12,6 +12,17 @@
                     <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
                     <a href="{% url 'list_user' %}" class="nav-item nav-link">User List</a>
                     <a href="{% url 'products:product_list' %}" class="nav-item nav-link">Product List</a>
+                    <a href="{% url 'quiz' %}" class="nav-item nav-link">Quiz</a>
+{#                    <a href="{% url 'featured_list' %}" class="nav-item nav-link">Featured Products</a>#}
+                </div>
+                <div class="navbar-nav ms-auto">
+
+                    <a href="{% url 'logout' %}" class="nav-item nav-link btn btn-danger">Logout</a>
+                </div>
+            {% elif request.user.is_authenticated %}
+                <div class="navbar-nav">
+                    <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
+                    <a href="{% url 'quiz' %}" class="nav-item nav-link">Quiz</a>
 {#                    <a href="{% url 'featured_list' %}" class="nav-item nav-link">Featured Products</a>#}
                 </div>
                 <div class="navbar-nav ms-auto">
@@ -20,10 +31,7 @@
                 </div>
             {% elif not request.user.is_authenticated %}
                 <div class="navbar-nav ms-auto">
-
                     <a href="{% url 'login' %}" class="nav-item nav-link">Login</a>
-
-              	    <a href="{% url 'register' %}" class="nav-item nav-link">Register</a>
                 </div>
             {% endif %}
 
