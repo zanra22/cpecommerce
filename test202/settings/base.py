@@ -13,7 +13,7 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -61,7 +61,7 @@ ROOT_URLCONF = 'test202.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        'DIRS': [os.path.join(BASE_DIR, '../../templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -125,15 +125,26 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [BASE_DIR / "static_my_project",]
+STATICFILES_DIRS = [BASE_DIR / "static_my_project", ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static_cdn", "static_root")
+STATIC_ROOT = os.path.join(BASE_DIR, "../../static_cdn", "static_root")
 
 MEDIA_URL = 'media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "static_cdn", "media_root")
+MEDIA_ROOT = os.path.join(BASE_DIR, "../../static_cdn", "media_root")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CORS_REPLACE_HTTPS_REFERER      = False
+HOST_SCHEME                     = "http://"
+SECURE_PROXY_SSL_HEADER         = None
+SECURE_SSL_REDIRECT             = False
+SESSION_COOKIE_SECURE           = False
+CSRF_COOKIE_SECURE              = False
+SECURE_HSTS_SECONDS             = None
+SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
+SECURE_FRAME_DENY               = False
