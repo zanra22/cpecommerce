@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'search',
     'tags',
     'carts',
+    'storages'
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -137,3 +138,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "static_cdn", "media_root")
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_REPLACE_HTTPS_REFERER      = False
+HOST_SCHEME                     = "http://"
+SECURE_PROXY_SSL_HEADER         = None
+SECURE_SSL_REDIRECT             = False
+SESSION_COOKIE_SECURE           = False
+CSRF_COOKIE_SECURE              = False
+SECURE_HSTS_SECONDS             = None
+SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
+SECURE_FRAME_DENY               = False
+

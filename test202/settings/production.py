@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'search',
     'tags',
     'carts',
+    'storages'
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -131,6 +132,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static_cdn", "static_root")
 MEDIA_URL = 'media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "static_cdn", "media_root")
+
+from test202.aws.conf import *
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
